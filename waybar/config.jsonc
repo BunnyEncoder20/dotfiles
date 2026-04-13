@@ -74,7 +74,11 @@
       "(.*)Inbox(.*)": " | 󰊫 Gmail",
       "(.*)Bruno(.*)": " | 󰩃 Bruno",
 
-      // 4. Media & Tools
+      // 4. Editors
+      "(.*)[Cc]ode[\\s-]*[Ii]nsiders(.*)": " | 󰨞 Code",
+      "(.*)[Cc]ode(.*)": " | 󰨞 Code",
+
+      // 5. Media & Tools
       "(.*)VLC(.*)": "󰕼 VLC Media Player",
       "(.*)vlc(.*)": "󰕼 VLC Media Player",
 
