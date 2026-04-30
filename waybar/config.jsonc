@@ -4,7 +4,13 @@
   "position": "top",
   "spacing": 0,
   "height": 26,
-  "modules-left": ["custom/omarchy", "hyprland/workspaces", "hyprland/window"],
+  "modules-left": [
+    "custom/omarchy",
+    "hyprland/workspaces",
+    "hyprland/window",
+    "mpris",
+    "custom/cava",
+  ],
   "modules-center": [
     "clock",
     "custom/update",
@@ -103,16 +109,21 @@
   },
 
   "mpris": {
-    "format": "{player_icon} {title} - {artist}",
-    "format-paused": "{status_icon} <i>{title} - {artist}</i>",
+    "format": " | {player_icon} {title}",
+    "tooltip-format": "{player} - {title} - {artist}",
+    "format-paused": "{status_icon}",
     "player-icons": {
-      "default": "󰝚",
+      "default": "",
+      "mpv": "",
+      "brave": "󰗃",
       "vlc": "󰕼",
     },
     "status-icons": {
-      "paused": "󰏤",
+      "paused": " | ",
     },
-    "max-length": 35,
+    // "ignored-players": ["firefox", "chromium", "brave"],
+    "on-click": "playerctl play-pause",
+    "max-length": 25,
   },
   "cpu": {
     "interval": 5,
@@ -230,5 +241,10 @@
   "tray": {
     "icon-size": 12,
     "spacing": 17,
+  },
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/waybar/cava.sh",
+    "tooltip": false,
   },
 }
