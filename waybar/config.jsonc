@@ -48,36 +48,58 @@
         },
     },
     "hyprland/window": {
-        "format": "{title}",
-        "tooltip-format": "{title} : {class}",
+        "format": "{title} | {class}",
+        "tooltip-format": "{title} | {class}",
         "separate-outputs": true,
         "rewrite": {
-            // 0. Handle empty edge cases
-            "^ \\| (.*)": " |   Desktop ",
-            "^\\| (.*)": " |   Desktop ",
+            // 1. Specific Web Apps (Using case-insensitive flag (?i) if supported, or explicit ranges)
+            "(.*)YouTube(.*)": " |  YouTube ",
+            "(.*)Gmail(.*)": " | 󰊫 Gmail ",
+            "(.*)Google Calendar(.*)": " |  Calendar ",
+            "(.*)Google Gemini(.*)": " | 󰫢 Gemini AI ",
+            "(.*)whatsapp(.*)": " |  WhatsApp ",
+            "(.*)Bruno(.*)": " | 󰩃 Bruno ",
+            "(.*)Excalidraw(.*)": " | 󱦹 Excalidraw ",
+            "(.*)Eraser(.*)": " | 󰇟 Eraser.io ",
 
-            // 1. CLI Tools (Match these FIRST!)
-            // Removed the space after nvim so it matches even if you just type `nvim` and hit enter
-            "(.*)[Nn][Vv][Ii][Mm](.*)": " |  LazyVim ",
-            "(.*)[Ll]azy[Vv]im(.*)": " |  LazyVim ",
+            // 2. Editors & CLI (Check for these before the terminal they run in)
+            "(.*)NVIM(.*)": " |  LazyVim ",
+            "(.*)tmux(.*)": " |  Tmux ",
+            "(.*)lazygit(.*)": " | 󰊢 LazyGit ",
+            "(.*) | code": " | 󰨞 $1 ",
 
-            "(.*)[Tt]mux(.*)": " |  tmux ",
+            // 3. Browsers (General catch-all for Brave)
+            // "(.*)Brave-browser(.*)": " |  Brave ",
+            "(.*)Brave(.*)": " |  Brave ",
 
-            // 2. Terminals (Only triggers if nvim/tmux didn't match above)
+            // 4. Terminals
             "(.*)kitty": " | 󰄛 Kitty ",
-            "(.*)ghostty": "󰊠 $1 ",
+            "(.*)ghostty": " | 󰊠 Ghostty ",
 
-            // 1. Handle deep paths: Shows '.../' followed by the last folder
-            ".*/([^/]+/[^/]+)$": " | .../$1 ",
-            "^~/(.*)": " | ~/$1 ",
-            "^~$": " | ~ Home ",
-            // "(.*)com.mitchellh.ghostty": " | 󰊠 $1 ",
+            // 5. System Tools
+            "(.*)VLC(.*)": " | 󰕼 VLC ",
+            "(.*)btop": " | 󰨇 btop ",
+            "(.*Discord)...(.*).. (.*)": " |  $2 ",
+            "(.*) \\| org.gnome.Nautilus": " | 󰣆 $1 ",
+            "(.*Steam)...(.*)": " |  $1 ",
+            "(.*imv)...(.*).. (.*)": " |  $2 ",
+            "(.*)Vial(.*)": " |  Vial ",
 
-            // 5. Media & Tools
-            "(.*)vlc(.*)": " | 󰕼 VLC",
+            // 6. Handle empty/default case
+            "^$": " |   Desktop ",
 
-            // 5. Clean up the Catch-all
-            "(.+) \\| (.+)": "$1",
+            // Replace the literal home path with ~
+            "^~/(.*)": " | 󰊠 󰜥/$1 ",
+            // Shorten long paths to show only the last two directories
+            ".*?(/[^/]+/[^/]+)$": " | 󰊠 ...$1 ",
+            // Catch-all for any other terminal strings starting with /
+            "^/(.*)": " | 󰊠 /$1 ",
+            // Handle the bare home dir
+            "^~$": " | 󰊠 󰜥 ",
+
+            // CRITICAL: This MUST be the last rule in your list.
+            // it strips the | class from everything else so your bar stays clean.
+            "(.*) \\| (.*)": " | 󰣆 $1 ",
         },
         "max-length": 50,
     },
