@@ -51,7 +51,7 @@ cava -p "$config_file" 2>/dev/null | while IFS= read -r line || [[ -n "$line" ]]
         fi
 
         # hide after 2 seconds of continuous silence
-        if ((SECONDS - pause_start >= 2)); then
+        if ((SECONDS - pause_start >= 5)); then
             echo ""
         else
             convert_to_bars "$line"

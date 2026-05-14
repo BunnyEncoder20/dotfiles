@@ -161,7 +161,7 @@ tooltip {
 #custom-cava {
     padding: 0 5px;
     background-color: @background;
-    margin: 2px 4px 4px 4px;
+    margin: 0px 4px 4px 4px;
     color: @foreground;
 }
 
