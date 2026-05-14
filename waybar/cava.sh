@@ -2,7 +2,7 @@
 set -u
 bars=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
 config_file="/tmp/waybar_cava_config"
-cat > "$config_file" <<EOF
+cat >"$config_file" <<EOF
 [general]
 bars = 18
 framerate = 24
@@ -22,12 +22,12 @@ convert_to_bars() {
     local line="$1"
     local IFS=';'
     local -a nums
-    read -ra nums <<< "$line"
+    read -ra nums <<<"$line"
     local out=""
     local n
     for n in "${nums[@]}"; do
 
-        if (( n < 0 || n > 7 )); then
+        if ((n < 0 || n > 7)); then
             n=0
         fi
         out+="${bars[n]}"
@@ -37,7 +37,7 @@ convert_to_bars() {
 
 # fast check for "only zeros" (silence) using parameter expansion — no regex, no external tools
 is_silence() {
-    local l="${1//;/}"   # remove semicolons
+    local l="${1//;/}" # remove semicolons
     # remove all 0 characters; if result is empty => only zeros
     [[ -z "${l//0/}" ]]
 }
@@ -46,12 +46,12 @@ is_silence() {
 cava -p "$config_file" 2>/dev/null | while IFS= read -r line || [[ -n "$line" ]]; do
     # silence detection (cheap)
     if is_silence "$line"; then
-        if (( pause_start == 0 )); then
+        if ((pause_start == 0)); then
             pause_start=$SECONDS
         fi
 
         # hide after 2 seconds of continuous silence
-        if (( SECONDS - pause_start >= 2 )); then
+        if ((SECONDS - pause_start >= 2)); then
             echo ""
         else
             convert_to_bars "$line"

@@ -6,7 +6,7 @@
 
     border: none;
     min-height: 0;
-    font-family: 'MonaspiceAr Nerd Font';
+    font-family: "CaskaydiaMono Nerd Font Propo";
     font-weight: normal;
 }
 
@@ -161,9 +161,8 @@ tooltip {
 #custom-cava {
     padding: 0 5px;
     background-color: @background;
-    margin: 0px 4px 4px 4px;
+    margin: 2px 4px 4px 4px;
     color: @foreground;
-    min-height: 18px;
 }
 
 #custom-voxtype {

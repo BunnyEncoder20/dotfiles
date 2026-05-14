@@ -133,7 +133,6 @@
         "tooltip": false,
         "on-click": "notify-send -u low \"$(omarchy-weather-status)\"",
     },
-
     "mpris": {
         "format": "| {player_icon} {title}",
         "tooltip-format": "{player} - {title} - {artist}",
