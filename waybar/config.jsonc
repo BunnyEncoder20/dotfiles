@@ -65,6 +65,7 @@
             "(.*)Monkeytype(.*)": " | 󰌌 Monkeytype ",
             "(.*)ZType(.*)": " | 󰬇 ZType ",
             "(.*)Home / X(.*)": " |  .com ",
+            "(.*)Anki(.*)": " |  Anki",
 
             // 2. Editors & CLI (Check for these before the terminal they run in)
             "(.*)NVIM(.*)": " |  LazyVim ",
