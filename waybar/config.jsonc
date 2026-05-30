@@ -65,18 +65,20 @@
             "(.*)Monkeytype(.*)": " | 󰌌 Monkeytype ",
             "(.*)ZType(.*)": " | 󰬇 ZType ",
             "(.*)Home / X(.*)": " |  .com ",
-            "(.*)Anki(.*)": " |  Anki",
+            "(.*)Anki(.*)": " |  Anki ",
 
             // 2. Editors & CLI (Check for these before the terminal they run in)
             "(.*)NVIM(.*)": " |  LazyVim ",
             "(.*)tmux(.*)": " |  Tmux ",
             "(.*)lazygit(.*)": " | 󰊢 LazyGit ",
             "(.*)lazydocker(.*)": " |  LazyDocker ",
-            "(.*) | code": " | 󰨞 $1 ",
+            "(.*)Visual Studio Code(.*)": " | 󰨞 VS Code ",
+            "(.*)genact(.*)": " | 󰒋 GenAct ",
 
             // 3. Browsers (General catch-all for Brave)
             // "(.*)Brave-browser(.*)": " |  Brave ",
             "(.*)Brave(.*)": " |  Brave ",
+            "(.*)Zen Browser(.*)": " |  Zen Browser ",
 
             // 4. Terminals
             "(.*)kitty": " | 󰄛 Kitty ",
@@ -91,6 +93,9 @@
             "(.*)Vial(.*)": " |  Vial ",
             "(.*)Calculator(.*)": " |  Calculator ",
             "(.*)LocalSend(.*)": " | 󱥸 LocalSend ",
+
+            // 8. Handling Specific File Types
+            "(.*).pdf(.*)": " |  $1",
 
             // 6. Handle empty/default case
             "^$": " |   Desktop ",
@@ -109,7 +114,7 @@
 
             // CRITICAL: This MUST be the last rule in your list.
             // it strips the | class from everything else so your bar stays clean.
-            "(.*) \\| (.*)": " | 󰣆 $1 ",
+            "(.*) \\| (.*)": "$1 ",
         },
         "max-length": 50,
     },
@@ -143,6 +148,7 @@
             "mpv": "",
             "brave": "󰗃",
             "vlc": "󰕼",
+            "WhatsApp": "",
         },
         "status-icons": {
             "paused": "",
